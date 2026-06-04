@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 
 PATTERN = re.compile(
-    r'<(?!(?:Component|TextColor)\b)[^>]*\bName="([^"]+)"'
+    r'<(?!(?:Component|TextColor|ActiveColor)\b)[^>]*\bName="([^"]+)"'
     r'|Label="([^"]+)"'
     r'|<Tooltip\b[^>]*\bValue="([^"]+)"'
 )
@@ -25,7 +25,11 @@ def apply_translations(text: str, translations: dict[str, str]) -> str:
         translated_value = translations.get(original_value)
 
         # Skip missing, empty, or placeholder translations
-        if not translated_value or translated_value == "translation placeholder":
+        if not translated_value or translated_value == "":
+            return match.group(0)
+
+        # Skip cases where the text is just "."
+        if original_value == ".":
             return match.group(0)
 
         translated_value = xml_escape_attr(translated_value)

@@ -4,7 +4,7 @@ import re
 from pathlib import Path
 
 PATTERN = re.compile(
-    r'<(?!(?:Component|TextColor)\b)[^>]*\bName="([^"]+)"'
+    r'<(?!(?:Component|TextColor|ActiveColor)\b)[^>]*\bName="([^"]+)"'
     r'|Label="([^"]+)"'
     r'|<Tooltip\b[^>]*\bValue="([^"]+)"'
 )
@@ -43,6 +43,9 @@ text = input_path.read_text(encoding="utf-8")
 
 # Extract unique values
 results = sorted(extract_strings(text))
+
+# Skip cases where the text is just "."
+results = [value for value in results if value != "."]
 
 results_all_caps = {value: "" for value in results if value.isupper()}
 results_all_caps = {k: v for k, v in sorted(results_all_caps.items(), key=lambda item: len(item[0]))}
