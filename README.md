@@ -21,7 +21,7 @@ This is a translation for Kitten Space Agency into Esperanto.
 | ----------------------------- | ---------------------------- |
 | Reaction Control System (RCS) | Reakcia Stirsistemo (RSS)    |
 | delta-velocity (delta-v)      | delto-vektorrapido (delto-v) |
-| burn                          | burlado                      |
+| burn                          | brulado                      |
 | normal                        | ortanto                      |
 | orbital velocity (OVEL)       | orbita vektorrapido (OVEK)   |
 | universal time (UT)           | cxie-tempo (CXT)             |
